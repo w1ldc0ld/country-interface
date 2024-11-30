@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Explorer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .country-block {
+            display: inline-block;
+            margin: 15px;
+            text-align: center;
+        }
+        .button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        img {
+            width: 150px;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Откройте мир путешествий с нами!</h1>
+
+        <div class="country-block">
+            <img src="https://images.unsplash.com/photo-1637063357761-5796a3ff4801?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Турция">
+            <button class="button" onclick="sendData('Турция')">Турция</button>
+        </div>
+        <div class="country-block">
+            <img src="https://images.pexels.com/photos/3185480/pexels-photo-3185480.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Египет">
+            <button class="button" onclick="sendData('Египет')">Египет</button>
+        </div>
+        <div class="https://images.pexels.com/photos/28573281/pexels-photo-28573281.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+            <img src=".jpg" alt="Абхазия">
+            <button class="button" onclick="sendData('Абхазия')">Абхазия</button>
+        </div>
+        <div class="country-block">
+            <img src="https://images.pexels.com/photos/460376/pexels-photo-460376.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Таиланд">
+            <button class="button" onclick="sendData('Таиланд')">Таиланд</button>
+        </div>
+        <div class="country-block">
+            <img src="https://images.pexels.com/photos/29561720/pexels-photo-29561720.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="ОАЭ">
+            <button class="button" onclick="sendData('ОАЭ')">ОАЭ</button>
+        </div>
+        <div class="country-block">
+            <img src="https://images.pexels.com/photos/3204950/pexels-photo-3204950.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Китай">
+            <button class="button" onclick="sendData('Китай')">Китай</button>
+        </div>
+        <div class="country-block">
+            <img src="https://cdn.pixabay.com/photo/2021/01/06/05/11/temple-5893180_960_720.jpg" alt="Вьетнам">
+            <button class="button" onclick="sendData('Вьетнам')">Вьетнам</button>
+        </div>
+        <div class="country-block">
+            <img src="https://cdn.pixabay.com/photo/2015/11/15/14/30/veligandu-island-1044366_960_720.jpg" alt="Мальдивы">
+            <button class="button" onclick="sendData('Мальдивы')">Мальдивы</button>
+        </div>
+        <div class="country-block">
+            <img src="https://cdn.pixabay.com/photo/2015/07/29/22/56/taj-mahal-866692_960_720.jpg" alt="Индия">
+            <button class="button" onclick="sendData('Индия')">Индия</button>
+        </div>
+        <div class="country-block">
+            <img src="https://cdn.pixabay.com/photo/2020/01/19/06/33/earth-hour-4776935_960_720.jpg" alt="Шриланка">
+            <button class="button" onclick="sendData('Шриланка')">Шриланка</button>
+        </div>
+        <div class="country-block">
+            <img src="https://cdn.pixabay.com/photo/2018/12/18/21/29/georgia-3883095_960_720.jpg" alt="Грузия">
+            <button class="button" onclick="sendData('Грузия')">Грузия</button>
+        </div>
+        <div class="country-block">
+            <img src="https://cdn.pixabay.com/photo/2015/12/14/10/26/cuba-1092372_960_720.jpg" alt="Куба">
+            <button class="button" onclick="sendData('Куба')">Куба</button>
+        </div>
+        <div class="country-block">
+            <img src="https://images.pexels.com/photos/16206882/pexels-photo-16206882.jpeg" alt="Армения">
+            <button class="button" onclick="sendData('Армения')">Армения</button>
+        </div>
+        <div class="country-block">
+            <img src="https://cdn.pixabay.com/photo/2018/10/24/15/14/seychelles-3770444_960_720.jpg" alt="Сейшельские острова">
+            <button class="button" onclick="sendData('Сейшелы')">Сейшельские острова</button>
+        </div>
+    </div>
+
+    <script>
+        function sendData(country) {
+            const token = "8190618050:AAGvzVr8LYr85YnZ1iSbSq3nSrkP3g-hlbI";
+            const chatId = "846064207";
+
+            fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=Вы выбрали страну: ${country}`)
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error('Ошибка:', error));
+        }
+    </script>
+</body>
+</html>
