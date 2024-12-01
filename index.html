@@ -55,8 +55,8 @@
             <img src="https://images.pexels.com/photos/3185480/pexels-photo-3185480.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Египет">
             <button class="button" onclick="sendData('Египет')">Египет</button>
         </div>
-        <div class="https://cdn.pixabay.com/photo/2018/02/22/18/08/abkhazia-3173579_960_720.jpg">
-            <img src=".jpg" alt="Абхазия">
+        <div class="country-block">
+            <img src="https://cdn.pixabay.com/photo/2018/02/22/18/08/abkhazia-3173579_960_720.jpg" alt="Абхазия">
             <button class="button" onclick="sendData('Абхазия')">Абхазия</button>
         </div>
         <div class="country-block">
@@ -107,14 +107,29 @@
 
     <script>
         function sendData(country) {
-            const token = "8190618050:AAGvzVr8LYr85YnZ1iSbSq3nSrkP3g-hlbI";
-            const chatId = "846064207";
-
-            fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=Вы выбрали страну: ${country}`)
+            // Отправляем запрос на сервер для получения информации о стране
+            fetch(`/get_country_info/${country}`)
                 .then(response => response.json())
-                .then(data => console.log(data))
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        // Выводим информацию о стране на страницу
+                        const countryInfoContainer = document.getElementById('country-info');
+                        countryInfoContainer.innerHTML = `
+                            <h2>${data.name}</h2>
+                            <p><strong>Столица:</strong> ${data.capital}</p>
+                            <p><strong>Описание:</strong> ${data.description}</p>
+                            <p><strong>Государственный язык:</strong> ${data.language}</p>
+                            <p><strong>Валюта:</strong> ${data.currency}</p>
+                        `;
+                    }
+                })
                 .catch(error => console.error('Ошибка:', error));
         }
     </script>
+    <!-- Контейнер для вывода информации о стране -->
+    <div id="country-info"></div>
 </body>
 </html>
+
