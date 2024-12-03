@@ -7,114 +7,173 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            text-align: center;
+            background-color: #f9f9f9;
             margin: 0;
             padding: 0;
         }
-        .container {
+        #button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             padding: 20px;
         }
-        .country-block {
-            display: inline-block;
+        .country-card {
+            width: 200px;
             margin: 15px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
+            overflow: hidden;
+            transition: transform 0.3s;
         }
-        .button {
-            display: inline-block;
-            background-color: #4CAF50;
+        .country-card:hover {
+            transform: scale(1.05);
+        }
+        .country-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .country-info {
+            padding: 10px;
+        }
+        .country-button {
+            background-color: #007BFF;
             color: white;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 14px;
+            border: none;
+            padding: 10px;
             border-radius: 5px;
             cursor: pointer;
-            border: none;
+            font-size: 14px;
+            transition: background-color 0.3s;
         }
-        .button:hover {
-            background-color: #45a049;
-        }
-        img {
-            width: 150px;
-            height: auto;
-            margin-bottom: 10px;
-            border-radius: 5px;
+        .country-button:hover {
+            background-color: #0056b3;
         }
     </style>
     <script>
         async function sendData(country) {
-            const response = await fetch(`/get_country_info/${country}`);
-            const data = await response.json();
-            if (data.error) {
-                alert(data.error);
-            } else {
-                alert(`Страна: ${data.name}\nСтолица: ${data.capital}\nОписание: ${data.description}`);
+            try {
+                const response = await fetch(`/get_country_info/${country}`);
+                const data = await response.json();
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    alert(
+                        `Страна: ${data.name}\n` +
+                        `Столица: ${data.capital}\n` +
+                        `Описание: ${data.description}\n` +
+                        `Язык: ${data.language}\n` +
+                        `Валюта: ${data.currency}`
+                    );
+                }
+            } catch (error) {
+                alert("Ошибка соединения с сервером.");
             }
         }
     </script>
 </head>
 <body>
-    <div class="container">
-        <h1>Откройте мир путешествий с нами!</h1>
-
-        <div class="country-block">
-            <img src="https://images.unsplash.com/photo-1637063357761-5796a3ff4801?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Турция">
-            <button class="button" onclick="sendData('Turkey')">Турция</button>
+    <div id="button-container">
+        <div class="country-card">
+            <img src="https://images.unsplash.com/photo-1637063357761-5796a3ff4801?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Турция" class="country-image">
+            <div class="country-info">
+                <h3>Турция</h3>
+                <button class="country-button" onclick="sendData('Турция')">Подробнее</button>
+            </div>
         </div>
-        <div class="country-block">
-            <img src="https://images.pexels.com/photos/3185480/pexels-photo-3185480.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Египет">
-            <button class="button" onclick="sendData('Египет')">Египет</button>
+        <div class="country-card">
+            <img src="https://images.pexels.com/photos/3185480/pexels-photo-3185480.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Египет" class="country-image">
+            <div class="country-info">
+                <h3>Египет</h3>
+                <button class="country-button" onclick="sendData('Египет')">Подробнее</button>
+            </div>
         </div>
-        <div class="https://images.pexels.com/photos/28573281/pexels-photo-28573281.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-            <img src=".jpg" alt="Абхазия">
-            <button class="button" onclick="sendData('Абхазия')">Абхазия</button>
+        <div class="country-card">
+            <img src="https://images.pexels.com/photos/28573281/pexels-photo-28573281.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Абхазия" class="country-image">
+            <div class="country-info">
+                <h3>Абхазия</h3>
+                <button class="country-button" onclick="sendData('Абхазия')">Подробнее</button>
+            </div>
         </div>
-        <div class="country-block">
-            <img src="https://images.pexels.com/photos/460376/pexels-photo-460376.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Таиланд">
-            <button class="button" onclick="sendData('Таиланд')">Таиланд</button>
+        <div class="country-card">
+            <img src="https://images.pexels.com/photos/460376/pexels-photo-460376.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Таиланд" class="country-image">
+            <div class="country-info">
+                <h3>Таиланд</h3>
+                <button class="country-button" onclick="sendData('Таиланд')">Подробнее</button>
+            </div>
         </div>
-        <div class="country-block">
-            <img src="https://images.pexels.com/photos/29561720/pexels-photo-29561720.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="ОАЭ">
-            <button class="button" onclick="sendData('ОАЭ')">ОАЭ</button>
+        <div class="country-card">
+            <img src="https://images.pexels.com/photos/29561720/pexels-photo-29561720.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="ОАЭ" class="country-image">
+            <div class="country-info">
+                <h3>ОАЭ</h3>
+                <button class="country-button" onclick="sendData('ОАЭ')">Подробнее</button>
+            </div>
         </div>
-        <div class="country-block">
-            <img src="https://images.pexels.com/photos/3204950/pexels-photo-3204950.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Китай">
-            <button class="button" onclick="sendData('Китай')">Китай</button>
+        <div class="country-card">
+            <img src="https://images.pexels.com/photos/3204950/pexels-photo-3204950.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Китай" class="country-image">
+            <div class="country-info">
+                <h3>Китай</h3>
+                <button class="country-button" onclick="sendData('Китай')">Подробнее</button>
+            </div>
         </div>
-        <div class="country-block">
-            <img src="https://cdn.pixabay.com/photo/2021/01/06/05/11/temple-5893180_960_720.jpg" alt="Вьетнам">
-            <button class="button" onclick="sendData('Вьетнам')">Вьетнам</button>
+        <div class="country-card">
+            <img src="https://cdn.pixabay.com/photo/2021/01/06/05/11/temple-5893180_960_720.jpg" alt="Вьетнам" class="country-image">
+            <div class="country-info">
+                <h3>Вьетнам</h3>
+                <button class="country-button" onclick="sendData('Вьетнам')">Подробнее</button>
+            </div>
         </div>
-        <div class="country-block">
-            <img src="https://cdn.pixabay.com/photo/2015/11/15/14/30/veligandu-island-1044366_960_720.jpg" alt="Мальдивы">
-            <button class="button" onclick="sendData('Мальдивы')">Мальдивы</button>
+        <div class="country-card">
+            <img src="https://cdn.pixabay.com/photo/2015/11/15/14/30/veligandu-island-1044366_960_720.jpg" alt="Мальдивы" class="country-image">
+            <div class="country-info">
+                <h3>Мальдивы</h3>
+                <button class="country-button" onclick="sendData('Мальдивы')">Подробнее</button>
+            </div>
         </div>
-        <div class="country-block">
-            <img src="https://cdn.pixabay.com/photo/2015/07/29/22/56/taj-mahal-866692_960_720.jpg" alt="Индия">
-            <button class="button" onclick="sendData('Индия')">Индия</button>
+        <div class="country-card">
+            <img src="https://cdn.pixabay.com/photo/2015/07/29/22/56/taj-mahal-866692_960_720.jpg" alt="Индия" class="country-image">
+            <div class="country-info">
+                <h3>Индия</h3>
+                <button class="country-button" onclick="sendData('Индия')">Подробнее</button>
+            </div>
         </div>
-        <div class="country-block">
-            <img src="https://cdn.pixabay.com/photo/2020/01/19/06/33/earth-hour-4776935_960_720.jpg" alt="Шриланка">
-            <button class="button" onclick="sendData('Шриланка')">Шриланка</button>
+        <div class="country-card">
+            <img src="https://cdn.pixabay.com/photo/2020/01/19/06/33/earth-hour-4776935_960_720.jpg" alt="Шри-Ланка" class="country-image">
+            <div class="country-info">
+                <h3>Шри-Ланка</h3>
+                <button class="country-button" onclick="sendData('Шри-Ланка')">Подробнее</button>
+            </div>
         </div>
-        <div class="country-block">
-            <img src="https://cdn.pixabay.com/photo/2018/12/18/21/29/georgia-3883095_960_720.jpg" alt="Грузия">
-            <button class="button" onclick="sendData('Грузия')">Грузия</button>
+        <div class="country-card">
+            <img src="https://cdn.pixabay.com/photo/2018/12/18/21/29/georgia-3883095_960_720.jpg" alt="Грузия" class="country-image">
+            <div class="country-info">
+                <h3>Грузия</h3>
+                <button class="country-button" onclick="sendData('Грузия')">Подробнее</button>
+            </div>
         </div>
-        <div class="country-block">
-            <img src="https://cdn.pixabay.com/photo/2015/12/14/10/26/cuba-1092372_960_720.jpg" alt="Куба">
-            <button class="button" onclick="sendData('Куба')">Куба</button>
+        <div class="country-card">
+            <img src="https://cdn.pixabay.com/photo/2015/12/14/10/26/cuba-1092372_960_720.jpg" alt="Куба" class="country-image">
+            <div class="country-info">
+                <h3>Куба</h3>
+                <button class="country-button" onclick="sendData('Куба')">Подробнее</button>
+            </div>
         </div>
-        <div class="country-block">
-            <img src="https://images.pexels.com/photos/16206882/pexels-photo-16206882.jpeg" alt="Армения">
-            <button class="button" onclick="sendData('Армения')">Армения</button>
+        <div class="country-card">
+            <img src="https://images.pexels.com/photos/16206882/pexels-photo-16206882.jpeg" alt="Армения" class="country-image">
+            <div class="country-info">
+                <h3>Армения</h3>
+                <button class="country-button" onclick="sendData('Армения')">Подробнее</button>
+            </div>
         </div>
-        <div class="country-block">
-            <img src="https://cdn.pixabay.com/photo/2018/10/24/15/14/seychelles-3770444_960_720.jpg" alt="Сейшельские острова">
-            <button class="button" onclick="sendData('Сейшелы')">Сейшельские острова</button>
+        <div class="country-card">
+            <img src="https://cdn.pixabay.com/photo/2018/10/24/15/14/seychelles-3770444_960_720.jpg" alt="Сейшельские острова" class="country-image">
+            <div class="country-info">
+                <h3>Сейшельские острова</h3>
+                <button class="country-button" onclick="sendData('Сейшелы')">Подробнее</button>
+            </div>
         </div>
-    </div>
     </div>
 </body>
 </html>
