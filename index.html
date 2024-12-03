@@ -42,6 +42,17 @@
             border-radius: 5px;
         }
     </style>
+    <script>
+        async function sendData(country) {
+            const response = await fetch(`/get_country_info/${country}`);
+            const data = await response.json();
+            if (data.error) {
+                alert(data.error);
+            } else {
+                alert(`Страна: ${data.name}\nСтолица: ${data.capital}\nОписание: ${data.description}`);
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -49,14 +60,14 @@
 
         <div class="country-block">
             <img src="https://images.unsplash.com/photo-1637063357761-5796a3ff4801?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Турция">
-            <button class="button" onclick="sendData('Турция')">Турция</button>
+            <button class="button" onclick="sendData('Turkey')">Турция</button>
         </div>
         <div class="country-block">
             <img src="https://images.pexels.com/photos/3185480/pexels-photo-3185480.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Египет">
             <button class="button" onclick="sendData('Египет')">Египет</button>
         </div>
-        <div class="country-block">
-            <img src="https://cdn.pixabay.com/photo/2018/02/22/18/08/abkhazia-3173579_960_720.jpg" alt="Абхазия">
+        <div class="https://images.pexels.com/photos/28573281/pexels-photo-28573281.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+            <img src=".jpg" alt="Абхазия">
             <button class="button" onclick="sendData('Абхазия')">Абхазия</button>
         </div>
         <div class="country-block">
@@ -104,32 +115,6 @@
             <button class="button" onclick="sendData('Сейшелы')">Сейшельские острова</button>
         </div>
     </div>
-
-    <script>
-        function sendData(country) {
-            // Отправляем запрос на сервер для получения информации о стране
-            fetch(`/get_country_info/${country}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.error) {
-                        alert(data.error);
-                    } else {
-                        // Выводим информацию о стране на страницу
-                        const countryInfoContainer = document.getElementById('country-info');
-                        countryInfoContainer.innerHTML = `
-                            <h2>${data.name}</h2>
-                            <p><strong>Столица:</strong> ${data.capital}</p>
-                            <p><strong>Описание:</strong> ${data.description}</p>
-                            <p><strong>Государственный язык:</strong> ${data.language}</p>
-                            <p><strong>Валюта:</strong> ${data.currency}</p>
-                        `;
-                    }
-                })
-                .catch(error => console.error('Ошибка:', error));
-        }
-    </script>
-    <!-- Контейнер для вывода информации о стране -->
-    <div id="country-info"></div>
+    </div>
 </body>
 </html>
-
