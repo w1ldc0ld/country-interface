@@ -55,7 +55,7 @@
     <script>
         async function sendData(country) {
             try {
-                const response = await fetch(`/get_country_info/${country}`);
+                const response = await fetch(`http://127.0.0.1:5000/get_country_info/${country}`);
                 const data = await response.json();
                 if (data.error) {
                     alert(data.error);
