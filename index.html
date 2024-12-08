@@ -11,6 +11,22 @@
             margin: 0;
             padding: 0;
         }
+        #header {
+            text-align: center;
+            padding: 100px 20px; /* увеличиваем верхний отступ для хорошего отображения */
+            background-color: #007BFF;
+            color: white;
+        }
+        #header h1 {
+            font-size: 70px;
+            font-weight: 600;
+            background-image: url('https://avatars.mds.yandex.net/i?id=7bb1504c37e26e0cdb4a614de7cb1a78_l-5268869-images-thumbs&n=13'); 
+            background-repeat: repeat;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-transform: uppercase; /* Можно добавить для большего эффекта */
+        }
         #button-container {
             display: flex;
             flex-wrap: wrap;
@@ -75,8 +91,11 @@
     </script>
 </head>
 <body>
-    <div id="button-container">
+    <div id="header">
         <h1>Откройте мир путешествий с нами!</h1>
+    </div>
+
+    <div id="button-container">
         <div class="country-card">
             <img src="https://images.unsplash.com/photo-1637063357761-5796a3ff4801?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Турция" class="country-image">
             <div class="country-info">
@@ -159,20 +178,6 @@
             <div class="country-info">
                 <h3>Куба</h3>
                 <button class="country-button" onclick="sendData('Куба')">Подробнее</button>
-            </div>
-        </div>
-        <div class="country-card">
-            <img src="https://images.pexels.com/photos/16206882/pexels-photo-16206882.jpeg" alt="Армения" class="country-image">
-            <div class="country-info">
-                <h3>Армения</h3>
-                <button class="country-button" onclick="sendData('Армения')">Подробнее</button>
-            </div>
-        </div>
-        <div class="country-card">
-            <img src="https://cdn.pixabay.com/photo/2018/10/24/15/14/seychelles-3770444_960_720.jpg" alt="Сейшельские острова" class="country-image">
-            <div class="country-info">
-                <h3>Сейшельские острова</h3>
-                <button class="country-button" onclick="sendData('Сейшельские острова')">Подробнее</button>
             </div>
         </div>
     </div>
